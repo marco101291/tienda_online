@@ -1,0 +1,40 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+logs
+*.log
+*.log.*
+pids
+*.pid
+*.seed
+
+# Build files
+build/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# React
+# client/build/
+# client/node_modules/
+# client/.env
+
+# Server
+server/node_modules/
+server/.env
