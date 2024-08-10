@@ -1,16 +1,18 @@
-# Online Music Store
+# Online Store Application
 
-This is a full-stack web application for an online music store where users can browse and purchase musical instruments, as well as manage their accounts. The project is divided into two main parts: the frontend built with React.js and the backend built with Express.js and Node.js.
+This is a full-stack web application for an online store where users can browse, purchase various products like clothes, jewelry, and gadgets, and manage their accounts. The project is divided into two main parts: the frontend built with React.js and the backend built with Express.js and Node.js.
 
 ## Table of Contents
 
 - [Project Structure](#project-structure)
 - [Technologies Used](#technologies-used)
 - [Setup Instructions](#setup-instructions)
+- [Using the SQL File](#using-the-sql-file)
 - [Frontend Components](#frontend-components)
 - [Backend Functions](#backend-functions)
-- [Database Setup](#database-setup)
 - [Running the Application](#running-the-application)
+- [Database Setup](#database-setup)
+- [License](#license)
 
 ## Project Structure
 
@@ -39,8 +41,8 @@ The project is structured into two main directories:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/online-music-store.git
-    cd online-music-store
+    git clone https://github.com/your-username/online-store.git
+    cd online-store
     ```
 
 2. **Install dependencies for both the client and server:**
@@ -64,9 +66,39 @@ The project is structured into two main directories:
     DB_HOST=your_database_host
     DB_USER=your_database_user
     DB_PASSWORD=your_database_password
-    DB_NAME=your_database_name
+    DB_NAME=tienda_online
     SECRET_KEY=your_secret_key_for_jwt
     ```
+
+## Using the SQL File
+
+To set up the database for this application, you'll need to use the provided `database.sql` file. This file includes the necessary tables (`Users`, `Products`, `Purchases`), sample data, and stored procedures.
+
+### Instructions
+
+1. **Locate the `database.sql` file:**
+
+    The `database.sql` file is located in the `server/database/` directory.
+
+2. **Create the database using MySQL Workbench:**
+
+    - Open MySQL Workbench and connect to your MySQL server.
+    - Go to `File > Open SQL Script` and navigate to the `database.sql` file.
+    - Execute the script by clicking on the "lightning bolt" icon.
+
+3. **Create the database using the command line:**
+
+    If you prefer using the command line, run the following command:
+
+    ```bash
+    mysql -u your_username -p tienda_online < server/database/database.sql
+    ```
+
+    Replace `your_username` with your MySQL username.
+
+4. **Verify the database:**
+
+    After running the script, verify that the `tienda_online` database has been created with the `Users`, `Products`, and `Purchases` tables populated with sample data.
 
 ## Frontend Components
 
@@ -114,13 +146,10 @@ The project is structured into two main directories:
 
 - **`purchaseCart`**: An async action that sends the cart data to the backend for purchase processing. It handles success and error states, updating the UI accordingly.
 
-## Database Setup
+## Running the Application
 
-Ensure your MySQL server is running, and you've created a database with the name provided in the `.env` file.
-
-Run the migrations and seed the database with initial data (if applicable):
+### Start the Backend
 
 ```bash
 cd server
-npx sequelize-cli db:migrate
-npx sequelize-cli db:seed:all
+npm run dev
