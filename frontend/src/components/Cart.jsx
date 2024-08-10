@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, clearCart, purchaseCart, incrementQuantity, decrementQuantity } from "../redux/cartSlice";
+import { removeItem, clearCart, purchaseCart, incrementQuantity, decrementQuantity, resetStatus } from "../redux/cartSlice";
 import {useNavigate} from 'react-router-dom'
 
 const Cart = () =>{
@@ -49,11 +49,18 @@ const Cart = () =>{
 
      console.log("totalPrice ", totalPrice);
      
+     setTimeout(()=>{
+          if(purchaseStatus !== 'idle'){
+               
+               dispatch(resetStatus())
+               // navigate('/');
+          }
+     },2000)
 
      return(
           <div className="p-4">
                <h2 className="text-x1 font-semibold mb-4">Shopping Cart</h2>
-               {cartItems.length === 0 ? (
+               {cartItems.length === 0 && purchaseStatus === 'idle' ? (
                     <p>Your cart is empty.</p>
                ) : (
                     <>

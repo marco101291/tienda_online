@@ -13,13 +13,15 @@ export const purchaseCart = createAsyncThunk(
      async(_, {getState, rejectWithValue}) =>{
           try {
                const {cart} = getState();
+               const cartItems = cart.items;
+
                console.log("cart state from cartslice", cart);
                console.log("cart.items", cart.items)
                // const response = await axiosInstance.post('/api/products/purchase', {
                //      items: cart.items
                // });
                const token = localStorage.getItem('token');
-               const response = await axiosInstance.post('/api/products/purchase', cart.items, {
+               const response = await axiosInstance.post('/api/products/purchase', {products: cartItems}, {
                     headers: {
                          'Content-Type': 'application/json',
                          Authorization: `Bearer ${token}`,  // Asegúrate de incluir el token si la ruta está protegida
@@ -64,6 +66,10 @@ const cartSlice = createSlice({
           clearCart: (state) =>{
                state.items = [];
           },
+          resetStatus: (state) => {
+               state.purchaseStatus = 'idle';
+               state.error = null;
+          }
      },
      extraReducers: (builder) =>{
           builder
@@ -82,6 +88,6 @@ const cartSlice = createSlice({
      }
 })
 
-export const { addItem, removeItem, incrementQuantity, decrementQuantity, clearCart } = cartSlice.actions;
+export const { addItem, removeItem, incrementQuantity, decrementQuantity, clearCart, resetStatus } = cartSlice.actions;
 
 export default cartSlice.reducer;

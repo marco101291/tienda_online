@@ -36,5 +36,5 @@ Thumbs.db
 # client/.env
 
 # Server
-server/node_modules/
-server/.env
+# server/node_modules/
+# server/.env
