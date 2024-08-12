@@ -5,7 +5,7 @@ import ProductList from '../components/ProductList';
 const Home = () => {
      return(
           <div className="p-4">
-               <h1 className="text-3x1 font-bold mb-6">Welcome to the Music Store</h1>
+               <h1 className="text-3x1 font-bold mb-6">Welcome to the Online Store</h1>
                <ProductList />
           </div>
      )

@@ -1,23 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { incrementQuantity, decrementQuantity, removeItem } from "../redux/cartSlice";
+import { removeItem } from "../redux/cartSlice";
 
 const CartDropdown = ({cartItems,toggleCartDropdown}) => {
-
-     const dispatch = useDispatch();
-
-     const handleIncrement = (id) => {
-          dispatch(incrementQuantity(id));
-        };
-      
-        const handleDecrement = (id) => {
-          dispatch(decrementQuantity(id));
-        };
-      
-        const handleRemove = (id) => {
-          dispatch(removeItem(id));
-        };
 
      return(
           <div className="absolute right-0 mt-2 w-64 bg-white border rounded shadow-lg z-50">
@@ -30,15 +16,15 @@ const CartDropdown = ({cartItems,toggleCartDropdown}) => {
                                    <li key={item.id} className="flex justify-between items-center mb-2">
                                         <div>
                                              <p className="text-sm">{item.name}</p>
-                                             <p className="text-sm text-gray-600">${item.price} x {item.quantity}</p>
+                                             <p className="text-sm text-gray-600 font-bold">${item.price} x {item.quantity}</p>
                                              <div className="flex items-center">
-                                                  <button onClick={() => handleDecrement(item.id)} className="text-red-600 mr-2">
+                                                  {/* <button onClick={() => handleDecrement(item.id)} className="text-red-600 mr-2">
                                                   -
-                                                  </button>
-                                                  <span>{item.quantity}</span>
-                                                  <button onClick={() => handleIncrement(item.id)} className="text-green-600 ml-2">
+                                                  </button> */}
+                                                  {/* <span>{item.quantity}</span> */}
+                                                  {/* <button onClick={() => handleIncrement(item.id)} className="text-green-600 ml-2">
                                                   +
-                                                  </button>
+                                                  </button> */}
                                              </div>
                                         </div>
                                         <img src={item.image} alt={item.name} className="w-12 h-12 object-cover"/>

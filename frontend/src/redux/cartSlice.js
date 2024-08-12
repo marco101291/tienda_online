@@ -14,17 +14,11 @@ export const purchaseCart = createAsyncThunk(
           try {
                const {cart} = getState();
                const cartItems = cart.items;
-
-               console.log("cart state from cartslice", cart);
-               console.log("cart.items", cart.items)
-               // const response = await axiosInstance.post('/api/products/purchase', {
-               //      items: cart.items
-               // });
                const token = localStorage.getItem('token');
                const response = await axiosInstance.post('/api/products/purchase', {products: cartItems}, {
                     headers: {
                          'Content-Type': 'application/json',
-                         Authorization: `Bearer ${token}`,  // Asegúrate de incluir el token si la ruta está protegida
+                         Authorization: `Bearer ${token}`,  // Make sure to include the token if the route is secured
                     },
                });
                return response.data;
@@ -39,11 +33,15 @@ const cartSlice = createSlice({
      initialState,
      reducers: {
           addItem: (state, action) => {
+               
                const item = state.items.find((item)=> item.id === action.payload.id );
+               console.log("item from cartslice", item)
+               console.log("action.payload.id", action.payload.id)
                if(item){
                     item.quantity += 1;
-               } else {
-                    state.items.push({...action.payload, quantity: 1});
+               } 
+               else {
+                    state.items.push({...action.payload, quantity: action.payload.quantity});
                }
                
           },
@@ -54,6 +52,8 @@ const cartSlice = createSlice({
                const item = state.items.find((item) => item.id === action.payload);
                if (item) {
                  item.quantity += 1;
+               } else {
+                    state.items.push({...action.payload, quantity: 1});
                }
           },
           decrementQuantity: (state, action) => {
@@ -83,7 +83,7 @@ const cartSlice = createSlice({
                })
                .addCase(purchaseCart.rejected, (state, action)=>{
                     state.purchaseStatus = 'failed';
-                    state.error = action.payload;
+                    state.error = action.error.message;
                })
      }
 })

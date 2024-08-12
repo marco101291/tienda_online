@@ -14,8 +14,6 @@ const NavBar = () =>{
      const [isCartOpen, setIsCartOpen] = useState(false);
      const [profileOpen, setProfileOpen] = useState(false);
 
-     console.log("user from Navbar", user)
-
      const handleLogout = () => {
           dispatch(logoutUser());
           navigate('login');

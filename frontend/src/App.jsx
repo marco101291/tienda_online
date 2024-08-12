@@ -7,20 +7,22 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
 import Cart from './components/Cart'
+import ProductDetail from './components/ProductDetail';
 import { checkAuth } from './redux/authSlice';
+
 
 
 
 export const App = () => {
   const user = useSelector((state)=> state.auth.user);
   const dispatch = useDispatch();
-  console.log("user from App.jsx ", user)
-
+  
   useEffect(()=> {
 
     dispatch(checkAuth());
     
   }, [dispatch])
+  
   return (
     <Router>
       <div className="App">
@@ -31,6 +33,7 @@ export const App = () => {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/products/:id" element={<ProductDetail />} />
             <Route 
               path="/profile" 
               element={user ? <Profile /> : <Navigate to="login" />}></Route>

@@ -7,7 +7,7 @@ import ProductCard from "./ProductCard";
 const ProductList = () =>{
 
      const dispatch = useDispatch();
-     const {items, status} = useSelector((state)=>state.products);
+     const {productList, status, error} = useSelector((state)=>state.products);
 
      useEffect(()=>{
           if(status === 'idle'){
@@ -17,7 +17,7 @@ const ProductList = () =>{
 
      return(
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-               {items.map((product)=>(
+               {productList.map((product)=>(
                     <ProductCard key={product.id} product={product} />
                ))}
           </div>

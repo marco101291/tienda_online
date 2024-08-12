@@ -84,7 +84,6 @@ export const checkAuth = createAsyncThunk(
      'auth/checkAuth',
      async (_, { rejectWithValue }) => {
        const token = localStorage.getItem('token');
-       console.log("token from checkauth: ", token)
        const encryptedUser = localStorage.getItem('user');
 
        if (!token || !encryptedUser) {
@@ -104,17 +103,6 @@ export const checkAuth = createAsyncThunk(
      }
    );
 
-// export const logoutUser = createAsyncThunk(
-//      'auth/logout',
-//      async(_, {rejectWithValue})=>{
-//           try {
-//                const response = await axiosInstance.get('/auth/logout');
-//                return response.data;
-//           } catch (error) {
-//                return rejectWithValue(error.response.data);
-//           }
-//      }
-// )
 
 const authSlice = createSlice({
      name: 'auth',

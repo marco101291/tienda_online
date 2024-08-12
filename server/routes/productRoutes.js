@@ -5,7 +5,7 @@ import { authenticateToken } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 router.get('/', getProducts);
-router.get('/:id',authenticateToken, getProductById);
+router.get('/:id', getProductById);
 router.post('/purchase', authenticateToken, purchaseProduct);
 
 export default router;
